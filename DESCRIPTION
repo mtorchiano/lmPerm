@@ -1,0 +1,10 @@
+Package: lmPerm
+Version: 2.0
+Title: Permutation Tests for Linear Models
+Author: Bob Wheeler <bwheelerg@gmail.com>, Marco Torchiano <marco.torchiano@polito.it>
+Maintainer: Marco Torchiano <marco.torchiano@polito.it>
+Description: Linear model functions using permutation tests.
+License: GPL (>= 2)
+URL: https://github.com/mtorchiano/lmPerm
+Repository: CRAN
+NeedsCompilation: yes

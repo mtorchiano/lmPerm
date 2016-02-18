@@ -1,0 +1,7 @@
+S3method(summary,lmp)
+S3method(summary,mlmp)
+S3method(print,summary.lmp)
+S3method(anova, lmp)
+S3method(summary, aovp)
+useDynLib("lmPerm")
+exportPattern("^[^\\.]")
