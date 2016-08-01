@@ -13,9 +13,8 @@
 \headheight=0cm
 \columnsep=0.5cm
 
-\author{Robert E. Wheeler
-}
-\date{}
+\author{Robert E. Wheeler}
+\date{2016-07-30}
 \title{Permutation tests for  linear models in R}
 
 \begin{document}

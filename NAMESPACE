@@ -5,3 +5,9 @@ S3method(anova, lmp)
 S3method(summary, aovp)
 useDynLib("lmPerm")
 exportPattern("^[^\\.]")
+importFrom("stats", ".getXlevels", "as.formula", "coef", "contr.sum",
+          "contrasts<-", "df.residual", "formula", "is.empty.model",
+          "lm.fit", "lm.wfit", "model.matrix", "model.offset",
+          "model.response", "model.weights", "pf", "printCoefmat",
+          "proj", "pt", "quantile", "residuals", "symnum", "terms",
+          "update")

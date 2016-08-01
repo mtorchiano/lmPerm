@@ -142,7 +142,7 @@ function (formula, data = NULL, perm="Exact", seqs=FALSE, center=TRUE,projection
             domain = NA)
     lmcall <- Call <- match.call()
 		lmcall[[1]] <- as.name("lmp")     # REW
-	lmcall$singular.ok <- TRUE
+	  lmcall$singular.ok <- TRUE
     if (projections) 
         qr <- lmcall$qr <- TRUE
     lmcall$projections <- NULL
