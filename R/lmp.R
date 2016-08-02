@@ -113,6 +113,7 @@ function (formula, data, perm="Exact", seqs=FALSE,center=TRUE,subset, weights, n
 
 	
 #REW end
+    
     ret.x <- x
     ret.y <- y
     cl <- match.call()
@@ -124,11 +125,29 @@ function (formula, data, perm="Exact", seqs=FALSE,center=TRUE,subset, weights, n
     mf <- mf[c(1L, m)]
     mf$drop.unused.levels <- TRUE
     mf[[1L]] <- as.name("model.frame")
-	if (!missing(data)){ # REW This makes data avail for lhs multiple columns when multResp() is used
-		attach(data,warn.conflicts=FALSE,name="lmp")    # REW
-    on.exit(detach(name = "lmp"))
-	}
-    mf <- eval(mf, parent.frame())  #this is the only use of data. Hereafter,mf is data with attachments
+    
+    # MTk: using environment instead of attach!
+    # Is it useful in any way?
+    extenv = new.env(parent = parent.frame())
+    attr(extenv,"name") <- "lmp ext env"
+    if(!missing(data)){ 
+      for(coln in names(data)){
+        assign(coln,data[[coln]],envir=extenv)
+      }
+    }
+    ##
+    #  was
+    ##
+    # 		if (!missing(data)){ # REW This makes data avail for lhs multiple columns when multResp() is used
+    # 			attach(data,warn.conflicts=FALSE,name = "aovp")    # REW
+    #       on.exit(detach(name = "aovp"))
+    # 		}    
+    #mf <- eval(mf, parent.frame())  #this is the only use of data. Hereafter,mf is data with attachments
+    if(!missing(data)){
+      mf <- eval(mf, data,parent.frame())  #this is the only use of data. Hereafter,mf is data with attachments
+    }else{
+      mf <- eval(mf, parent.frame())
+    }
 #REW begin
 
 	respVar<-deparse(formula[[2L]],width.cutoff =500, backtick=TRUE) # the response variable

@@ -147,8 +147,8 @@ function (formula, data = NULL, perm="Exact", seqs=FALSE, center=TRUE,projection
         qr <- lmcall$qr <- TRUE
     lmcall$projections <- NULL
     if (is.null(indError)) {  # if there is no error term, lmp() is called
-		lmcall$qr<-TRUE														#REW Need the qr for later use
-        fit <- eval(lmcall, parent.frame())   		           
+		lmcall$qr<-TRUE													#REW Need the qr for later use
+        fit <- eval(lmcall, parent.frame())   
         if (projections) 
             fit$projections <- proj(fit)
 
@@ -173,10 +173,22 @@ function (formula, data = NULL, perm="Exact", seqs=FALSE, center=TRUE,projection
 #        opcons <- options("contrasts")
 #        options(contrasts = c("contr.helmert", "contr.poly")) 
 #       on.exit(options(opcons))
-		if (!missing(data)){ # REW This makes data avail for lhs multiple columns when multResp() is used
-			attach(data,warn.conflicts=FALSE,name = "aovp")    # REW
-      on.exit(detach(name = "aovp"))
-		}
+      
+      # MTk: using environment instead of attach!
+      # Currently unused!!!! just to fit CRAN rules....
+      extenv = new.env(parent=parent.frame())
+      if(!missing(data)){ 
+        for(coln in names(data)){
+          assign(coln,data[[coln]],envir=extenv)
+        }
+      }
+      ##
+      #  was
+      ##
+# 		if (!missing(data)){ # REW This makes data avail for lhs multiple columns when multResp() is used
+# 			attach(data,warn.conflicts=FALSE,name = "aovp")    # REW
+#       on.exit(detach(name = "aovp"))
+# 		}
       
         allTerms <- Terms
         errorterm <- attr(Terms, "variables")[[1 + indError]]
@@ -189,13 +201,19 @@ function (formula, data = NULL, perm="Exact", seqs=FALSE, center=TRUE,projection
         ecall$method <- "qr"
         ecall$qr <- TRUE
         ecall$contrasts <- NULL
-		ecall[[1]] <- as.name("lm")     # Do not need to call lmp() for error strata REW
-       er.fit <- suppressWarnings(eval(ecall, parent.frame())) # fit to error strata. ecall is (response ~ block)
-											# warnings suppressed because of perm parameter REW
+		    ecall[[1]] <- as.name("lm")     # Do not need to call lmp() for error strata REW
+        #er.fit <- suppressWarnings(eval(ecall, parent.frame())) # fit to error strata. ecall is (response ~ block)
+        ## MTk, replacing with extenv, just to be on the safe side
+		    if(!missing(data)){ 
+            er.fit <- suppressWarnings(eval(ecall, data,parent.frame())) # fit to error strata. ecall is (response ~ block)
+                                  # warnings suppressed because of perm parameter REW
+		    }else{
+		       er.fit <- suppressWarnings(eval(ecall, parent.frame())) # fit to error strata. ecall is (response ~ block)
+		    }
  #       options(opcons) REW deleted
-       nmstrata <- attr(terms(er.fit), "term.labels") # error strata names
+        nmstrata <- attr(terms(er.fit), "term.labels") # error strata names
         nmstrata <- sub("^`(.*)`$", "\\1", nmstrata) # removes backticks
-		erStrataNames<-nmstrata # REW
+		    erStrataNames<-nmstrata # REW
         nmstrata <- c("(Intercept)", nmstrata)
         qr.e <- er.fit$qr
         rank.e <- er.fit$rank
@@ -221,11 +239,22 @@ function (formula, data = NULL, perm="Exact", seqs=FALSE, center=TRUE,projection
 
         lmcall$method <- "model.frame"
 
-		if (!missing(data)){ # REW This makes data avail for lhs multiple columns when multResp() is used
-			attach(data,warn.conflicts=FALSE,name="aovp")    # REW
-        on.exit(detach(name = "aovp"))
-		}
-        mf <- eval(lmcall, parent.frame())  # The within model frame -- the call is to lmp()
+        extenv = new.env()
+        if(!missing(data)){ 
+          for(coln in names(data)){
+            assign(coln,data[[coln]],envir=extenv)
+          }
+        }
+        ##
+        #  was
+        ##
+        # 		if (!missing(data)){ # REW This makes data avail for lhs multiple columns when multResp() is used
+        # 			attach(data,warn.conflicts=FALSE,name = "aovp")    # REW
+        #       on.exit(detach(name = "aovp"))
+        # 		}
+        #mf <- eval(lmcall, parent.frame())  # The within model frame -- the call is to lmp()
+        ## MTk, replacing with extenv, just to be on the safe side
+        mf <- eval(lmcall, extenv)  # The within model frame -- the call is to lmp()
 #REW begin
 
 		respVar<-deparse(formula[[2L]],width.cutoff=500, backtick=TRUE) # the response variable
