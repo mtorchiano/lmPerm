@@ -19,10 +19,19 @@ function (...) {
 
 	dots<-as.list(substitute(list(...)))[-1]
 
+	## When evaluated inside another eval, uses that eval environment
+	n=1
+	if(sys.nframe()>1)
+	for(i in 1:(sys.nframe()-1)){
+	  if(sys.call(-i)[[1]]=="eval"){
+	    n <- i
+	    break
+	  }
+	}
 
 	mt<-NULL
 	for (i in seq(along=dots)) {
-		mt<-cbind(mt,as.matrix(eval(dots[i][[1]])))
+		mt<-cbind(mt,as.matrix(eval.parent(dots[i][[1]],n)))
 	}
 	colnames(mt)<-nameargs(dots)
 	mt
