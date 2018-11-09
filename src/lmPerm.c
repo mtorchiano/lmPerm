@@ -14,6 +14,46 @@ void permuteProb(int* Ni, int* nci, double* Y, double* Q, int* nSi, int* dof, do
 void	permuteRand(double** Y,int n);
 
 
+#include <R_ext/Rdynload.h>
+#include <Rinternals.h>
+
+void
+  R_init_mylib(DllInfo *info)
+  {
+    static R_NativePrimitiveArgType permute_t[] = {
+      INTSXP, INTSXP, INTSXP, INTSXP, INTSXP, INTSXP
+    };
+    static R_NativePrimitiveArgType permuteSPR_t[] = {
+      INTSXP, INTSXP, REALSXP, REALSXP, INTSXP, INTSXP, INTSXP, 
+      INTSXP,INTSXP, REALSXP, REALSXP, REALSXP, REALSXP, INTSXP,
+      REALSXP,INTSXP,REALSXP,INTSXP
+    };
+    static R_NativePrimitiveArgType permuteExact_t[] = {
+      INTSXP, INTSXP, REALSXP, REALSXP, INTSXP, INTSXP, REALSXP, REALSXP, REALSXP
+    };
+    static R_NativePrimitiveArgType permuteProb_t[] = {
+      INTSXP, INTSXP, REALSXP, REALSXP, INTSXP, INTSXP, REALSXP, INTSXP, 
+      INTSXP, REALSXP, INTSXP, REALSXP, INTSXP
+    };
+    static const R_CMethodDef cMethods[] = {
+      {"permute", (DL_FUNC) &permute, 6, permute_t},
+      {"permuteExact", (DL_FUNC) &permuteExact, 9, permuteExact_t},
+      {"permuteSPR", (DL_FUNC) &permuteSPR, 18, permuteSPR_t},
+      {"permuteProb", (DL_FUNC) &permuteProb, 13, permuteProb_t},
+      {NULL, NULL, 0, NULL}
+    };
+    
+    R_registerRoutines(info, cMethods, NULL, NULL, NULL);
+    
+    R_useDynamicSymbols(info, FALSE);
+  }
+
+void
+  R_unload_mylib(DllInfo *info)
+  {
+    /* Release resources. */
+  }
+
 #define tol 1e-8
 
 
