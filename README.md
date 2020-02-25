@@ -6,7 +6,7 @@ This is the original package developed by Bob Wheeler that I took over after his
 I just maintain the package and keep it up-to-date with CRAN standards and rules.
 
 The package is available on the CRAN web site: 
-http://cran.r-project.org/web/packages/lmPerm/index.html
+https://cran.r-project.org/package=lmPerm
 
 In case you wish using a version not yet on the CRAN web site you can use the `devtools` package:
 
