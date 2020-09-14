@@ -17,7 +17,7 @@ function (Q, Y, dof, perm="Prob", ... )
 		if (!is.null(dots$p0)) p0<-dots$p0 
 		if (!is.null(dots$p1)) p1<-dots$p1 
 		if (!is.null(dots$alpha)) alpha<-dots$alpha 
-		if (!is.null(dots$beta)) maxIter<-dots$beta 
+		if (!is.null(dots$beta)) beta<-dots$beta 
 		if (!is.null(dots$maxExact)) maxExact<-dots$maxExact 
 		if (!is.null(dots$nCycle)) nCycle<-dots$nCycle
 	}	
