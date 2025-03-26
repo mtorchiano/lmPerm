@@ -17,6 +17,5 @@ devtools::install_github("mtorchiano/lmPerm")
 
 ### Dev Status
 
-[![Build Status](https://travis-ci.org/mtorchiano/lmperm.svg?branch=master)](https://travis-ci.org/mtorchiano/lmPerm)
 [![CRAN Release](http://www.r-pkg.org/badges/version-last-release/lmPerm)](http://cran.r-project.org/web/packages/lmPerm)
 [![Downloads](http://cranlogs.r-pkg.org/badges/last-month/lmPerm)](https://cranlogs.r-pkg.org)
