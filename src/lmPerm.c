@@ -17,6 +17,14 @@ void	permuteRand(double** Y,int n);
 #include <R_ext/Rdynload.h>
 #include <Rinternals.h>
 
+
+#ifndef __cplusplus
+#define true 1
+#define false 0
+//#define bool int
+typedef int bool;
+#endif
+
 void
   R_init_mylib(DllInfo *info)
   {
