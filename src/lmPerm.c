@@ -17,12 +17,14 @@ void	permuteRand(double** Y,int n);
 #include <R_ext/Rdynload.h>
 #include <Rinternals.h>
 
-
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
+#include <stdbool.h>
+#else
 #ifndef __cplusplus
+typedef int bool;
 #define true 1
 #define false 0
-//#define bool int
-typedef int bool;
+#endif
 #endif
 
 void
@@ -905,8 +907,8 @@ void permuteSPR(
 		u1=(int)((double)N*unif_rand()); 
 		u2=(int)((double)N*unif_rand());
 
-		crita=floor(an+(iter)*rn);
-		critr=ceil(bn+(iter)*rn);
+		crita=(int)floor(an+(iter)*rn);
+		critr=(int)ceil(bn+(iter)*rn);
 
 
 		/* Update the SS */
@@ -1067,7 +1069,7 @@ void	permuteRand(
    double temp;
 
    for (i=0;i<n;i++) {
-      j=floor((1+i)*unif_rand());
+      j=(int)floor((1+i)*unif_rand());
       temp=(*Y)[j];
       (*Y)[j]=(*Y)[i];
       (*Y)[i]=temp;
