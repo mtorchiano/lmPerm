@@ -16,4 +16,4 @@ BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
 PackageBuildBinaryArgs: --configure-args="-Wfloat-conversion -Wkeyword-macro"
-PackageCheckArgs: --vanilla --as-cran
+PackageCheckArgs: --as-cran

@@ -1,8 +1,16 @@
 Package: lmPerm
-Version: 2.1.3
+Version: 2.1.4
 Title: Permutation Tests for Linear Models
-Author: Bob Wheeler <bwheelerg@gmail.com>, Marco Torchiano <marco.torchiano@polito.it>
+Author: Bob Wheeler [aut], Marco Torchiano [aut, cre]
 Maintainer: Marco Torchiano <marco.torchiano@polito.it>
+Authors@R: c(person(given = "Bob",
+                    family = "Wheeler",
+                    role = "aut",
+                    email = "bwheelerg@gmail.com"),
+             person(given = "Marco",
+                    family = "Torchiano",
+                    role = c("aut", "cre"),
+                    email = "marco.torchiano@polito.it"))
 Imports: stats
 Description: Linear model functions using permutation tests.
 License: GPL (>= 2)
