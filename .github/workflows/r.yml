@@ -44,7 +44,7 @@ jobs:
       - name: Build
         run: R CMD build --compact-vignettes=both .
       - name: version
-        run: echo "::set-output name=version::$(grep 'Version' DESCRIPTION | sed 's/.*: //')"
+        run: echo "version=$(grep 'Version' DESCRIPTION | sed 's/.*: //')" >> "$GITHUB_OUTPUT"
         id: version
       - name: Release
         uses: softprops/action-gh-release@v2
