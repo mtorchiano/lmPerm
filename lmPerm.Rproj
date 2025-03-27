@@ -15,5 +15,6 @@ LaTeX: pdfLaTeX
 BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
-PackageBuildBinaryArgs: --configure-args="-Wfloat-conversion -Wkeyword-macro"
+PackageBuildArgs: --compact-vignettes
+PackageBuildBinaryArgs: --configure-args="-Wfloat-conversion -Wkeyword-macro -Wint-in-bool-context"
 PackageCheckArgs: --as-cran

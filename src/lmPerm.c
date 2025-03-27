@@ -523,7 +523,7 @@ void permuteProb(
 	
 	Kt=K-dof[nSe];
 
-	nToDo=nc*(nSe+Kt);
+	nToDo= nc*(nSe+Kt) > 0;
 
 	SS=(double *)S_alloc(nc*nS,sizeof(double));  /* These should be zeroed as allocated */
 	oSS=(double *)S_alloc(nc*nS,sizeof(double));
@@ -826,7 +826,7 @@ void permuteSPR(
 	
 	Kt=K-dof[nSe];
 
-	nToDo=nc*(nSe+Kt);
+	nToDo= nc*(nSe+Kt) != 0;
 
 
 	SS=(double *)S_alloc(nc*nS,sizeof(double));  /* These should be zeroed as allocated */
