@@ -17,5 +17,6 @@ devtools::install_github("mtorchiano/lmPerm")
 
 ### Dev Status
 
-[![CRAN Release](https://www.r-pkg.org/badges/version-last-release/lmPerm/)](https://CRAN.R-project.org/package=lmPerm )
-[![Downloads](https://cranlogs.r-pkg.org/badges/last-month/lmPerm/)](https://cranlogs.r-pkg.org/)
+[![R](https://github.com/mtorchiano/lmPerm/actions/workflows/r.yml/badge.svg)](https://github.com/mtorchiano/lmPerm/actions/workflows/r.yml)
+[![CRAN Release](https://www.r-pkg.org/badges/version-last-release/lmPerm)](https://CRAN.R-project.org/package=lmPerm)
+[![Downloads](https://cranlogs.r-pkg.org/badges/last-month/lmPerm)](https://cranlogs.r-pkg.org/)
