@@ -43,11 +43,11 @@ jobs:
         shell: Rscript {0}
       - name: Build
         run: R CMD build --compact-vignettes=both .
-      - name: version
-        run: echo "version=$(grep 'Version' DESCRIPTION | sed 's/.*: //')" >> "$GITHUB_OUTPUT"
-        id: version
+      - name: Get Version
+        run: echo "current_version=$(grep 'Version' DESCRIPTION | sed 's/.*. //')" >> "$GITHUB_OUTPUT"
+        id: get_version
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.version.outputs.version }}
+          tag_name: ${{ steps.get_version.outputs.current_version }}
           files: lmPerm*.tar.gz
