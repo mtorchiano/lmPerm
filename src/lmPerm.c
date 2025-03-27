@@ -1,7 +1,7 @@
-#include "wheeler.h"
 #include <stdlib.h>
 #include <R.h>
 #include <Rmath.h>
+#include "wheeler.h"
 
 void permute(int* result, int* N, int* K, int* vec, int* initialize, int* count);
 void permuteSPR(int* Ni, int* nci, double* Y, double* Q, int* nSi, int* dof, int* Mi, 
@@ -17,6 +17,7 @@ void	permuteRand(double** Y,int n);
 #include <R_ext/Rdynload.h>
 #include <Rinternals.h>
 
+// this is required to keep backward compatibility
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L
 #include <stdbool.h>
 #else
@@ -1055,7 +1056,7 @@ void permuteSPR(
 }
 
 /* permuteRand ***************************************************************
-|  Randomly pemutes the n values in Y[] using the Fike
+|  Randomly permutes the n values in Y[] using the Fike
 |  algorithm.  See Fike, "A permutation generation method"  The Computer
 |  Journal, 18-1, Feb 75, 21-22.
 */
