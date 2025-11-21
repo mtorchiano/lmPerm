@@ -806,8 +806,8 @@ Transform $X$ into an orthogonal matrix $Z$ by $Z=XT$, where
 	\begin{array}{lcl}
 		T&=&\left (
  			\begin{array}{ll} 
-			$T_a$ & \ast \\
-			0 & $T_b$
+			T_a & \ast \\
+			0 & T_b
 			\end{array} \right )
 	\end{array}
 	} & {
