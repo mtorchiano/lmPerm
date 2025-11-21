@@ -18,8 +18,9 @@
 \title{Permutation tests for  linear models in R}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
- %\VignetteIndexEntry{Using lmPaper} 
+%\VignetteIndexEntry{Using lmPaper} 
 %\VignetteDependsP{lmPerm}
 
 
@@ -809,9 +810,7 @@ Transform $X$ into an orthogonal matrix $Z$ by $Z=XT$, where
 			0 & T_b
 			\end{array} \right )
 	\end{array}
-	}
-
-	& {
+	} & {
 	\begin{array}{lcl}
 	T^{-1}&=&\left(
 		\begin{array}{ll}

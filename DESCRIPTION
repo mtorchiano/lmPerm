@@ -1,5 +1,5 @@
 Package: lmPerm
-Version: 2.1.5
+Version: 2.1.6
 Title: Permutation Tests for Linear Models
 Author: Bob Wheeler [aut], Marco Torchiano [aut, cre]
 Maintainer: Marco Torchiano <marco.torchiano@polito.it>
